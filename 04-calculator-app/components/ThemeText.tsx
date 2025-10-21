@@ -7,6 +7,7 @@ interface ThemeTextProps extends TextProps {
 }
 
 export const ThemeText = ({ children, variant = 'h1', ...props }: ThemeTextProps) => {
+    console.log("test");
     return (
         <Text
             style={[
