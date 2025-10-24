@@ -20,7 +20,7 @@ const MoviesHorizontalList = ({ title, movies, className = '', loadNextPage }: P
         const { contentOffset, layoutMeasurement, contentSize } = event.nativeEvent;
         const isEndReached = (contentOffset.x + layoutMeasurement.width + 600) >= contentSize.width;
 
-        if(!isEndReached) return;
+        if (!isEndReached) return;
 
         isLoading.current = true;
 
@@ -40,14 +40,14 @@ const MoviesHorizontalList = ({ title, movies, className = '', loadNextPage }: P
                 <Text className='text-3xl font-bold mt-2 px-4 mb-4'>{title}</Text>
             )}
 
-        <FlatList
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        keyExtractor={(item, index) => `${item.id.toString()}-${index}`}
-        data={movies}
-        renderItem={({ item }) => <MoviePoster id={item.id} poster={item.poster} smallPoster />}
-        onScroll={onScroll}
-        />
+            <FlatList
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                keyExtractor={(item, index) => `${item.id.toString()}-${index}`}
+                data={movies}
+                renderItem={({ item }) => <MoviePoster id={item.id} poster={item.poster} smallPoster />}
+                onScroll={onScroll}
+            />
 
         </View>
     )

@@ -1,6 +1,7 @@
-import { MovieDetailsDBResponse } from "../movie-details-response.interface";
+import { Cast } from "../moviedb-cast-response";
+import { MovieDetailsDBResponse } from "../moviedb-details-response.interface";
 import { Result } from "../moviedb-response";
-import { Movie, MovieDetails } from "../movies.interface";
+import { Movie, MovieCast, MovieDetails } from "../movies.interface";
 
 export class MovieMapper {
 
@@ -30,6 +31,15 @@ export class MovieMapper {
             genre: movie.genres.map(genre => genre.name),
             originalTitle: movie.original_title,
             productionCompanies: movie.production_companies.map(company => company.name),
+        }
+    }
+
+    static fromTheMovieDBToCast = (cast: Cast): MovieCast => {
+        return {
+            id: cast.id,
+            name: cast.name,
+            character: cast.character ?? '',
+            avatar: cast.profile_path ? `https://image.tmdb.org/t/p/w500${cast.profile_path}` : 'https://i.imgur.com/V4RclNb.png',
         }
     }
 }
