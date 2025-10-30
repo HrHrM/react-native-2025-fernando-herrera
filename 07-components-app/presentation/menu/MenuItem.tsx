@@ -1,5 +1,6 @@
 import { useThemeColor } from '@/hooks/use-theme-color';
 import { Ionicons } from '@expo/vector-icons';
+import { Href, useRouter } from 'expo-router';
 import React from 'react';
 import { Pressable, View } from 'react-native';
 import ThemedText from '../shared/ThemedText';
@@ -16,8 +17,14 @@ interface Props {
 const MenuItem = ({ title, icon, name, isFirst = false, isLast = false }: Props) => {
 
     const primaryColor = useThemeColor({}, 'primary');
+    const router = useRouter();
+    const [routeName] = name.split('/');
+
     return (
-        <Pressable onPress={() => { }}
+        <Pressable onPress={() => { 
+            console.log('name', name);
+            router.push(routeName as Href)
+        }}
             className='bg-white dark:bg-black/15 py-2 px-5'
             style={{
                 ...(isFirst && {
